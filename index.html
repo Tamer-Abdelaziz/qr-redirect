@@ -2,14 +2,56 @@
 <html>
 <head>
     <title>Redirecting...</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 20px;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .error {
+            color: red;
+            margin-top: 20px;
+        }
+        a {
+            display: inline-block;
+            margin: 10px;
+            padding: 10px 20px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+        a:hover {
+            background-color: #0056b3;
+        }
+    </style>
     <script>
         window.onload = function() {
-            window.open('https://huggingface.co/spaces/blockchainsecurity/GhostTxHunter', '_blank');
-            window.open('https://blockchainsecurity-ghosttxhunter.hf.space/', '_blank');
+            // Attempt to open the two links
+            let link1 = window.open('https://huggingface.co/spaces/blockchainsecurity/GhostTxHunter', '_blank');
+            let link2 = window.open('https://blockchainsecurity-ghosttxhunter.hf.space/', '_blank');
+
+            // Check if either window.open call was blocked
+            if (!link1 || !link2) {
+                // Show error message and manual links
+                document.getElementById('error-message').style.display = 'block';
+            } else {
+                // Optionally hide the main message if tabs opened successfully
+                document.getElementById('loading-message').style.display = 'none';
+            }
         };
     </script>
 </head>
 <body>
-    <p>Opening links...</p>
+    <h2>Opening Links...</h2>
+    <p id="loading-message">Please wait while we open the links in new tabs.</p>
+    <div id="error-message" class="error" style="display: none;">
+        <p><strong>Pop-up Blocker Detected!</strong></p>
+        <p>Your browser may have blocked the tabs from opening. Please allow pop-ups for this site and refresh the page, or click the links below to open manually:</p>
+        <a href="https://huggingface.co/spaces/blockchainsecurity/GhostTxHunter" target="_blank">Open Link 1</a>
+        <a href="https://blockchainsecurity-ghosttxhunter.hf.space/" target="_blank">Open Link 2</a>
+    </div>
 </body>
 </html>
